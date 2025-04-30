@@ -1,7 +1,7 @@
 .resume {
   margin: auto;
   max-width: 1100px;
-  color: #dddddd;
+  color: var(--color-text);
   font-size: 13px;
   line-height: 20px;
 }
@@ -12,7 +12,7 @@
 
 .capsule {
   border-radius: 15px;
-  background-color: rgba(57, 66, 67, 0.8);
+  background-color: var(--bg-capsule);
   padding: 30px;
   margin-bottom: 15px;
 }
@@ -29,7 +29,7 @@
   height: 160px;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid rgba(48, 146, 236, 0.3);
+  border: 2px solid var(--border-primary);
 }
 
 .profileImage {
@@ -47,20 +47,20 @@
 .profileName {
   font-size: 32px;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--color-text);
   margin: 0;
 }
 
 .profileTitle {
   font-size: 18px;
-  color: #3092ec;
+  color: var(--color-primary);
   margin: 0;
 }
 
 .profileSummaryStatement {
   font-size: 15px;
   line-height: 1.6;
-  color: #dddddd;
+  color: var(--color-text);
   margin: 0;
   max-width: 800px;
   text-align: justify;
@@ -77,13 +77,14 @@
 .profileTopSkill {
   font-size: 13px;
   padding: 6px 12px;
-  background-color: rgba(214, 82, 38, 0.15);
+  background-color: var(--top-skill-bg);
   border-radius: 20px;
-  color: #dddddd;
+  color: var(--color-text);
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(214, 82, 38, 0.3);
+    background-color: var(--top-skill-bg);
+    opacity: 0.8;
     transform: translateY(-1px);
   }
 }
@@ -100,7 +101,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #999999;
+  color: var(--color-text-secondary);
 
   a {
     color: inherit;
@@ -111,7 +112,7 @@
     transition: color 0.2s ease;
 
     &:hover {
-      color: #3092ec;
+      color: var(--color-primary);
     }
   }
 }
@@ -122,17 +123,17 @@
   align-items: center;
   padding-top: 20px;
   margin-top: 20px;
-  border-top: 1px solid rgba(48, 146, 236, 0.2);
+  border-top: 1px solid var(--border-primary);
 }
 
 .sectionHalf {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #dddddd;
+  color: var(--color-text);
 
   .icon {
-    color: #3092ec;
+    color: var(--color-primary);
     font-size: 18px;
   }
 
@@ -145,11 +146,11 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  color: #999999;
+  color: var(--color-text-secondary);
   transition: color 0.2s ease;
 
   &:hover {
-    color: #3092ec;
+    color: var(--color-primary);
   }
 }
 
@@ -173,7 +174,7 @@
 
 .sectionHeading span {
   font-size: 20px;
-  color: #dddddd;
+  color: var(--color-text);
   font-weight: 500;
   line-height: 1;
 }
@@ -181,13 +182,14 @@
 .experienceContainer {
   margin-top: 25px;
   padding: 25px;
-  background-color: rgba(47, 54, 55, 0.5);
+  background-color: var(--bg-experience);
   border-radius: 8px;
   transition: all 0.3s ease;
-  border-left: 4px solid #3092ec;
+  border-left: 4px solid var(--color-primary);
 
   &:hover {
-    background-color: rgba(47, 54, 55, 0.8);
+    background-color: var(--bg-experience);
+    opacity: 0.9;
     transform: translateX(5px);
   }
 }
@@ -199,22 +201,22 @@
 .experienceTitle {
   font-weight: bold;
   font-size: 20px;
-  color: #3092ec;
+  color: var(--color-primary);
   letter-spacing: 0.5px;
 }
 
 .experienceDuration {
   float: right;
   font-size: 14px;
-  color: #999999;
+  color: var(--color-text-secondary);
   padding: 4px 12px;
-  background-color: rgba(48, 146, 236, 0.1);
+  background-color: var(--highlight-bg);
   border-radius: 12px;
 }
 
 .experienceSubtitle {
   font-size: 16px;
-  color: #dddddd;
+  color: var(--color-text);
   margin-bottom: 15px;
   display: block;
 }
@@ -229,7 +231,7 @@
     margin-bottom: 12px;
     padding: 0;
     font-size: 14px;
-    color: #dddddd;
+    color: var(--color-text);
     line-height: 1.5;
     list-style: none !important;
 
@@ -245,17 +247,21 @@
   font-size: 12px;
   padding: 4px 10px;
   margin: 5px 5px 5px 0;
-  background-color: rgba(48, 146, 236, 0.1);
-  color: #dddddd;
+  background-color: var(--skill-bg);
+  color: var(--color-text);
   border-radius: 15px;
   display: inline-block;
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
-    background-color: #3092ec;
-    color: #ffffff;
-    cursor: pointer;
-    transform: translateY(-2px);
+    background-color: var(--highlight-bg);
+    transform: translateY(-1px);
+  }
+
+  &.selected {
+    background-color: var(--color-primary);
+    color: white;
   }
 }
 
@@ -270,7 +276,7 @@
   font-size: 22px;
   min-width: 22px;
   min-height: 22px;
-  color: #3092ec;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,7 +289,7 @@
 .skillPanelHeading {
   font-size: 18px;
   font-weight: bold;
-  color: #3092ec;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -296,10 +302,10 @@
 .skillType {
   font-size: 14px;
   font-weight: 600;
-  color: #dddddd;
+  color: var(--color-text);
   margin: 15px 0 8px 0;
   padding-left: 8px;
-  border-left: 3px solid #3092ec;
+  border-left: 3px solid var(--color-primary);
 }
 
 .skillContainer {
@@ -312,21 +318,21 @@
 .skill {
   font-size: 12px;
   padding: 4px 10px;
-  background-color: rgba(48, 146, 236, 0.1);
+  background-color: var(--skill-bg);
   border-radius: 15px;
-  color: #dddddd;
+  color: var(--color-text);
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(48, 146, 236, 0.2);
+    background-color: var(--highlight-bg);
     transform: translateY(-1px);
   }
 }
 
 .skillSelected {
-  background-color: #3092ec !important;
+  background-color: var(--color-primary) !important;
   color: #ffffff !important;
-  border-color: #3092ec !important;
+  border-color: var(--color-primary) !important;
 }
 
 .topMargin {
@@ -338,12 +344,12 @@
 }
 
 .customExperienceDescription {
-  color: #999999;
+  color: var(--color-text-secondary);
 }
 
 .rightPanelIcon {
   font-size: 20px;
-  color: #3092ec;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
 }
@@ -362,14 +368,14 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #3092ec;
+  background-color: var(--color-primary);
 }
 
 .timelineContainer {
   position: relative;
   width: 100%;
   padding: 40px 80px;
-  background-color: #2f3637;
+  background-color: var(--bg-capsule);
   min-height: 200px;
   border-radius: 15px;
   margin-bottom: 15px;
@@ -387,9 +393,9 @@
   height: 2px;
   background: linear-gradient(
     to right,
-    rgba(48, 146, 236, 0.2),
-    rgba(48, 146, 236, 0.6),
-    rgba(48, 146, 236, 0.2)
+    rgba(var(--color-primary-rgb), 0.2),
+    rgba(var(--color-primary-rgb), 0.6),
+    rgba(var(--color-primary-rgb), 0.2)
   );
   z-index: 1;
 }
@@ -410,21 +416,21 @@
 
     .timelineDot {
       background-color: #fff;
-      box-shadow: 0 0 15px rgba(48, 146, 236, 0.6);
+      box-shadow: 0 0 15px rgba(var(--color-primary-rgb), 0.6);
       transform: scale(1.2);
     }
 
     .timelineCompany {
-      color: #fff;
-      text-shadow: 0 0 10px rgba(48, 146, 236, 0.5);
+      color: var(--color-text);
+      text-shadow: 0 0 10px rgba(var(--color-primary-rgb), 0.5);
     }
 
     .timelinePosition {
-      color: #fff;
+      color: var(--color-text);
     }
 
     .timelineDuration {
-      background-color: rgba(48, 146, 236, 0.2);
+      background-color: var(--highlight-bg);
     }
 
     .timelineSummary {
@@ -447,7 +453,7 @@
 
 .timelineCompany {
   font-weight: bold;
-  color: #3092ec;
+  color: var(--color-primary);
   font-size: 18px;
   margin-bottom: 12px;
   text-align: center;
@@ -457,7 +463,7 @@
 
 .timelinePosition {
   font-size: 14px;
-  color: #dddddd;
+  color: var(--color-text);
   margin-bottom: 8px;
   text-align: center;
   transition: color 0.3s ease;
@@ -466,9 +472,9 @@
 
 .timelineDuration {
   font-size: 12px;
-  color: #999999;
+  color: var(--color-text-secondary);
   text-align: center;
-  background-color: rgba(48, 146, 236, 0.1);
+  background-color: var(--highlight-bg);
   padding: 4px 12px;
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -479,14 +485,14 @@
   top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
-  background-color: #394243;
+  background-color: var(--bg-capsule);
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   width: 400px;
   max-width: 90vw;
   font-size: 13px;
-  color: #dddddd;
+  color: var(--color-text);
   line-height: 1.6;
   text-align: left;
   opacity: 0;
@@ -503,19 +509,19 @@
     transform: translateX(-50%);
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid #394243;
+    border-bottom: 8px solid var(--bg-capsule);
   }
 }
 
 .timelineDot {
   width: 14px;
   height: 14px;
-  background-color: #3092ec;
+  background-color: var(--color-primary);
   border-radius: 50%;
   transition: all 0.3s ease;
   margin: 30px 0;
   position: relative;
-  box-shadow: 0 0 0 4px rgba(48, 146, 236, 0.2);
+  box-shadow: 0 0 0 4px var(--highlight-bg);
 
   &::before {
     content: '';
@@ -532,13 +538,13 @@
 
 .timelineYear {
   font-size: 16px;
-  color: #3092ec;
+  color: var(--color-primary);
   font-weight: 600;
   text-align: center;
   margin-top: 20px;
   padding: 6px 16px;
   border-radius: 15px;
-  background-color: rgba(48, 146, 236, 0.1);
+  background-color: var(--highlight-bg);
   transition: all 0.3s ease;
 }
 
@@ -560,16 +566,16 @@
 
 .timelineProjectName {
   font-size: 12px;
-  color: #dddddd;
+  color: var(--color-text);
 }
 
 .timelineProjectDuration {
   font-size: 11px;
-  color: #999999;
+  color: var(--color-text-secondary);
 }
 
 .highlighted {
-  background-color: rgba(48, 146, 236, 0.1);
+  background-color: var(--highlight-bg);
   border-radius: 4px;
   padding: 10px;
   transition: all 0.3s ease;
@@ -577,7 +583,7 @@
 
 .workSummaryStatement {
   font-size: 15px;
-  color: #dddddd;
+  color: var(--color-text);
   margin: 20px 0;
   line-height: 1.6;
 
@@ -586,7 +592,7 @@
     display: block;
     height: 1px;
     width: 100%;
-    background: linear-gradient(to right, rgba(48, 146, 236, 0.3), transparent);
+    background: linear-gradient(to right, var(--border-primary), transparent);
     margin-bottom: 12px;
   }
 }
@@ -602,16 +608,16 @@
 .projectItem {
   position: relative;
   padding: 15px;
-  background-color: rgba(48, 146, 236, 0.05);
+  background-color: var(--bg-experience);
   border-radius: 6px;
-  border-left: 3px solid rgba(48, 146, 236, 0.4);
+  border-left: 3px solid var(--border-primary);
   transition: all 0.3s ease;
   list-style: none !important;
 
   &:hover {
-    background-color: rgba(48, 146, 236, 0.1);
+    background-color: var(--highlight-bg);
     transform: translateX(3px);
-    border-left-color: #3092ec;
+    border-left-color: var(--color-primary);
   }
 
   &:before {
@@ -637,19 +643,19 @@
 .projectName {
   font-weight: 600;
   font-size: 16px;
-  color: #3092ec;
+  color: var(--color-primary);
 }
 
 .projectDuration {
   font-size: 13px;
-  color: #999999;
+  color: var(--color-text-secondary);
   padding: 3px 10px;
-  background-color: rgba(48, 146, 236, 0.07);
+  background-color: var(--highlight-bg);
   border-radius: 12px;
 }
 
 .projectSummary {
-  color: #dddddd;
+  color: var(--color-text);
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 10px;
@@ -659,91 +665,85 @@
   display: inline-block;
   margin-top: 8px;
   font-size: 12px;
-  color: #999999;
-  background-color: rgba(48, 146, 236, 0.07);
+  color: var(--color-text-secondary);
+  background-color: var(--highlight-bg);
   padding: 3px 10px;
   border-radius: 12px;
   margin-right: 10px;
 }
 
-.experienceAccomplishmentList {
-  margin: 15px 0;
-  padding-left: 15px;
-  list-style-type: none;
-
-  li {
-    position: relative;
-    margin-bottom: 12px;
-    padding: 0 0 0 5px;
-    font-size: 14px;
-    color: #dddddd;
-    line-height: 1.5;
-
-    &:before {
-      content: '•';
-      position: absolute;
-      left: -15px;
-      color: #3092ec;
-      font-size: 18px;
-      line-height: 0.9;
-      display: inline-block !important;
-    }
-  }
-}
-
-.experienceSkillContainerIndent {
-  margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.experienceSkill {
-  font-size: 12px;
-  padding: 4px 10px;
-  background-color: rgba(48, 146, 236, 0.1);
-  color: #dddddd;
-  border-radius: 15px;
-  display: inline-block;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background-color: #3092ec;
-    color: #ffffff;
-    cursor: pointer;
-    transform: translateY(-2px);
-  }
+.interestsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .interestCategory {
-  margin: 15px 0;
-  padding-left: 10px;
+  margin: 0;
+  padding: 15px;
+  background-color: var(--bg-experience);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-primary);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .interestTitleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .interestIcon {
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-right: 4px;
+  }
 
   .interestTitle {
     font-size: 16px;
     font-weight: 600;
-    color: #dddddd;
-    margin-bottom: 10px;
-    display: block;
+    color: var(--color-text);
   }
 
-  ul {
+  .interestList {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 
     li {
       font-size: 14px;
-      color: #999999;
+      color: var(--color-text-secondary);
       padding: 6px 10px;
-      margin: 5px 0;
-      background-color: rgba(48, 146, 236, 0.05);
+      background-color: var(--highlight-bg);
       border-radius: 6px;
       transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '•';
+        color: var(--color-primary);
+        margin-right: 8px;
+        font-size: 18px;
+        line-height: 0;
+      }
 
       &:hover {
-        background-color: rgba(48, 146, 236, 0.1);
-        color: #dddddd;
+        background-color: var(--highlight-bg);
+        opacity: 0.8;
+        color: var(--color-text);
         transform: translateX(5px);
       }
     }
@@ -756,14 +756,14 @@
 
 .mainContentContainer {
   border-radius: 15px;
-  background-color: rgba(57, 66, 67, 0.8);
+  background-color: var(--bg-capsule);
   padding: 30px;
   margin-top: 40px;
 }
 
 .title {
   font-size: 20px;
-  color: #dddddd;
+  color: var(--color-text);
   font-weight: 500;
   line-height: 1;
 }

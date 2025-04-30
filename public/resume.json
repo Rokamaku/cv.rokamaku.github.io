@@ -156,7 +156,8 @@
         "Git",
         "AWS",
         "Serverless",
-        "Terraform"
+        "Terraform",
+        "Docker"
       ]
     },
     {
@@ -206,7 +207,8 @@
         "React",
         "Git",
         "AWS",
-        "Serverless"
+        "Serverless",
+        "Docker"
       ]
     },
     {
@@ -228,7 +230,7 @@
           "keywords": []
         }
       ],
-      "summary": "A legal case management system built exclusively with Microsoft 365 to provide all the intelligence and methods for managing the life cycle of a Case / Matter for lawyer",
+      "summary": "iDeaLogic Vietnam is an IT staffing and software development company founded in 2014, with offices in Ho Chi Minh City and Hanoi. Originally rooted in the Netherlands, the company provides full-cycle technology solutions including IT consulting, custom software engineering, and a Build-Operate-Transfer (BOT Light) model for offshore development teams.",
       "name": "iDealogic",
       "projects": [
         {
@@ -313,7 +315,6 @@
     {
       "keywords": [
         "IT",
-        "Comic",
         "Novel"
       ],
       "name": "Reading book/blog"
