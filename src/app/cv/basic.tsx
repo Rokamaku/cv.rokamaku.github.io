@@ -67,7 +67,6 @@ export const Basic: React.FunctionComponent<BasicProps> = (props) => {
             alt="My Avatar"
             width={150}
             height={150}
-            placeholder="blur"
           />
         </div>
         <div className={styles.profileInfoContainer}>
