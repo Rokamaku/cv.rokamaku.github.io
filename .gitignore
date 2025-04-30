@@ -34,3 +34,5 @@ yarn-error.log*
 .vercel
 docs/index.html
 docs/CNAME
+
+docs

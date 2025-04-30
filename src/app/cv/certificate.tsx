@@ -25,33 +25,49 @@ interface CertificateLocal extends Omit<CertificateData, 'keywords'> {
   }[];
 }
 
-export const Certificate: React.FunctionComponent<CertificateProps> = (props) => {
-  const certificateData = useFilteredSkills(props.data, props.keywords || [])
+export const Certificate: React.FunctionComponent<CertificateProps> = (
+  props,
+) => {
+  const certificateData = useFilteredSkills(props.data, props.keywords || []);
 
   return (
     <>
       <div className={`${styles.capsuleDivider} ${styles.capsuleSpacer}`}></div>
-      <div className={`${styles.sectionHeadingContainer} ${styles.topMargin}`}>
+      <div className={styles.sectionHeading}>
         <AiFillSafetyCertificate className={styles.icon} />
-        <span className={styles.sectionHeading} >Training and Certifications</span>
+        <span className={styles.title}>Training and Certifications</span>
       </div>
-      {
-        (certificateData as CertificateLocal[]).map(it => (
-          <div key={it.name} className={styles.experienceContainer} >
-            <div className={styles.experienceTitleContainer} >
-              {it.url ? <a target="_blank" rel="noreferrer" href={it.url} ><span className={styles.experienceTitle}>{it.issuer} - {it.name}</span></a> :
-                <span className={styles.experienceTitle}>{it.issuer} - {it.name}</span>}
-              <span className={styles.experienceDuration}>{toFormatDateWithMonth(it.date)}</span>
-            </div>
-            {
-              it.keywords?.map(kw => (
-                <span key={kw.name} className={`${styles.experienceSkill} ${kw.isSelected ? styles.skillSelected : ''}`}
-                  onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}>{kw.name}</span>
-              ))
-            }
+      {(certificateData as CertificateLocal[]).map((it) => (
+        <div key={it.name} className={styles.experienceContainer}>
+          <div className={styles.experienceTitleContainer}>
+            {it.url ? (
+              <a target="_blank" rel="noreferrer" href={it.url}>
+                <span className={styles.experienceTitle}>
+                  {it.issuer} - {it.name}
+                </span>
+              </a>
+            ) : (
+              <span className={styles.experienceTitle}>
+                {it.issuer} - {it.name}
+              </span>
+            )}
+            <span className={styles.experienceDuration}>
+              {toFormatDateWithMonth(it.date)}
+            </span>
           </div>
-        ))
-      }
+          {it.keywords?.map((kw) => (
+            <span
+              key={kw.name}
+              className={`${styles.experienceSkill} ${
+                kw.isSelected ? styles.skillSelected : ''
+              }`}
+              onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}
+            >
+              {kw.name}
+            </span>
+          ))}
+        </div>
+      ))}
     </>
-  )
-}
+  );
+};

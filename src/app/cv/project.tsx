@@ -36,32 +36,45 @@ export const Project: React.FunctionComponent<ProjectProps> = (props) => {
   return (
     <>
       <div className={`${styles.capsuleDivider} ${styles.capsuleSpacer}`}></div>
-      <div className={`${styles.sectionHeadingContainer} ${styles.topMargin}`}>
+      <div className={styles.sectionHeading}>
         <BsFileCodeFill className={styles.icon} />
-        <span className={styles.sectionHeading} >Projects</span>
+        <span className={styles.title}>Projects</span>
       </div>
-      {
-        (projectData as ProjectLocal[]).map(it => (
-          <div key={it.name} className={styles.experienceContainer}>
-            <div className={styles.experienceTitleContainer}>
-              <span className={styles.experienceTitle}>{it.name}</span>
-              <span className={styles.experienceDuration}>{`${toFormatDateWithMonth(it.startDate)} - ${toFormatDateWithMonth(it.endDate)}`}</span>
-            </div>
-            <div className={styles.experienceSubtitleContainer}>
-              <span className={styles.customExperienceDescription}>{it.description}.</span>
-              {it.url && <a target="_blank" rel="noreferrer" href={it.url}><span> Link</span></a>}
-            </div>
-            <div className={styles.experienceSkillContainerIndent}>
-              {
-                it.keywords?.map(kw => (
-                  <span key={kw.name} className={`${styles.experienceSkill} ${kw.isSelected ? styles.skillSelected : ''}`}
-                    onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}>{kw.name}</span>
-                ))
-              }
-            </div>
+      {(projectData as ProjectLocal[]).map((it) => (
+        <div key={it.name} className={styles.experienceContainer}>
+          <div className={styles.experienceTitleContainer}>
+            <span className={styles.experienceTitle}>{it.name}</span>
+            <span
+              className={styles.experienceDuration}
+            >{`${toFormatDateWithMonth(it.startDate)} - ${toFormatDateWithMonth(
+              it.endDate,
+            )}`}</span>
           </div>
-        ))
-      }
+          <div className={styles.experienceSubtitleContainer}>
+            <span className={styles.customExperienceDescription}>
+              {it.description}.
+            </span>
+            {it.url && (
+              <a target="_blank" rel="noreferrer" href={it.url}>
+                <span> Link</span>
+              </a>
+            )}
+          </div>
+          <div className={styles.experienceSkillContainerIndent}>
+            {it.keywords?.map((kw) => (
+              <span
+                key={kw.name}
+                className={`${styles.experienceSkill} ${
+                  kw.isSelected ? styles.skillSelected : ''
+                }`}
+                onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}
+              >
+                {kw.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
     </>
-  )
-}
+  );
+};

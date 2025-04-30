@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FaHeart } from 'react-icons/fa';
 import styles from '../../styles/Cv.module.scss';
 
@@ -17,22 +17,20 @@ export const Interest: React.FunctionComponent<InterestProps> = (props) => {
   return (
     <>
       <div className={`${styles.capsuleDivider} ${styles.capsuleSpacer}`}></div>
-      <div className={`${styles.sectionHeadingContainer} ${styles.topMargin}`}>
-        <FaHeart className={styles.rightPanelIcon} />
-        <span className={styles.skillPanelHeading}>Interests</span>
+      <div className={styles.sectionHeading}>
+        <FaHeart className={styles.icon} />
+        <span className={styles.title}>Interests</span>
       </div>
-      {
-        data.map(it => (
-          <div key={it.name} className={styles.capsuleSpacer} >
-            {it.name}
-            <ul>
-              {it.keywords?.map(kw => (
-                <li key={kw} >{kw}</li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+      {data.map((it) => (
+        <div key={it.name} className={styles.capsuleSpacer}>
+          {it.name}
+          <ul>
+            {it.keywords?.map((kw) => (
+              <li key={kw}>{kw}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </>
-  )
-}
+  );
+};

@@ -1,12 +1,12 @@
 {
   "basics": {
     "name": "Bui Hoang Anh",
-    "label": "Full Stack Developer",
+    "label": "Software Engineer",
     "email": "anhbh.uit@gmail.com",
     "phone": "(+84) 379 585 666",
     "url": "https://rokamaku.dev",
-    "yoe": 3,
-    "summary": "A full stack developer with 3 years of experience in C#.NET technology as well as Front End Development, with good knowledge in Object-Oriented Analysis and Design, Database Design, and Design Patterns. Trying new things is what I am passion about. I'm eager to experiment on new change to improve the product.",
+    "yoe": 6,
+    "summary": "Software Engineer with 6+ years of experience across diverse technologies and languages. Proficient in Object-Oriented Analysis and Design, System Design, Database Architecture, with strong infrastructure knowledge. Passionate about continuous learning and innovation, I thrive on implementing new solutions to enhance product quality and user experience. A collaborative problem-solver who balances technical excellence with business objectives.",
     "location": {
       "address": "Binh Thanh",
       "city": "HCM",
@@ -24,9 +24,10 @@
         "network": "Linkedin"
       }
     ],
-    "image": "https://bl6pap003files.storage.live.com/y4mQm1TUgMB-K6_ypzr4h-w4UCesY7AGtDiKkTg23a1KMXHuwi2JvSyLYCuUosgori4p0x65qDlCS1WOwvoi5Vr5TeVnz1JcaSo1xZSKImPHwojYEz5DAoearv3QbuCOvsxq3g02ONve33tvTi2JtGC7K0etLxLviKQMyFUCl1JskN_3FvCuu_1fTGTsMyx197H?width=660&height=660&cropmode=none",
+    "image": "/avatar.png",
     "topSkills": [
       "C#.NET",
+      "NodeJS",
       "HTML",
       "Javascript/Typescript",
       "React"
@@ -81,26 +82,28 @@
         "React",
         "NodeJS",
         "NestJS",
-        "Apollo",
         "Webpack, ES6",
         "ASP.NET Core",
         "Entity Framework Core",
         "SignalR",
-        "Docker"
+        "Docker",
+        "Terraform",
+        "Serverless"
       ],
       "name": "Frameworks/ Platforms"
     },
     {
       "keywords": [
         "Microsoft SQL",
-        "MongoDb",
+        "Postgres SQL",
         "Redis"
       ],
       "name": "Database Management System"
     },
     {
       "keywords": [
-        "Azure"
+        "Azure",
+        "AWS"
       ],
       "name": "Cloud"
     },
@@ -118,6 +121,93 @@
     }
   ],
   "work": [
+    {
+      "highlights": [
+        {
+          "description": "Work as devops, build the infrastructure as code for the new version. Ensure the system is stable and scalable, able to handle the growth of the company",
+          "keywords": []
+        },
+        {
+          "description": "Work across engineering teams to resolve problems, consult solution for other team members to improve the product",
+          "keywords": []
+        }
+      ],
+      "summary": "Ringkas is a financial technology (fintech) company dedicated to simplifying and expanding access to home financing across Southeast Asia. By leveraging digital tools and data-driven solutions, Ringkas connects aspiring homeowners with financial institutions and streamlines the mortgage application process. The company's mission is to increase financial inclusion and make homeownership more accessible, transparent, and efficient.",
+      "name": "Ringkas",
+      "projects": [
+        {
+          "name": "CRM",
+          "summary": "A CRM system for managing customer data and interactions, support digitalize the process of applying for a home loan",
+          "teamSize": 15,
+          "keywords": []
+        }
+      ],
+      "position": "Senior Software Engineer",
+      "startDate": "2023-09",
+      "endDate": "Current",
+      "teamSize": 15,
+      "keywords": [
+        "NodeJS",
+        "GraphQL",
+        "Postgres",
+        "Javascript/Typescript",
+        "React",
+        "Git",
+        "AWS",
+        "Serverless",
+        "Terraform"
+      ]
+    },
+    {
+      "highlights": [
+        {
+          "description": "One of core member who build the whole system from scratch, from communication with other departments as well as external parties to architecture design and implementation",
+          "keywords": []
+        },
+        {
+          "description": "Ensure system is stable and scalable, able to handle the growth of the company, setup operation process for system on cloud",
+          "keywords": []
+        },
+        {
+          "description": "Build the first version of STP (Straight Through Processing) system, helping claim team to decrease the number of claim that need to be processed manually",
+          "keywords": []
+        }
+      ],
+      "summary": "Papaya Insurtech is a Vietnam-based fintech company founded in 2018, specializing in digital solutions for life and health insurance. As the country's first lightweight, scalable digital third-party administrator (TPA), Papaya streamlines insurance processes through a digitized platform that connects directly with insurance companies and incorporates automatic fraud detection functionalities.",
+      "name": "Papaya Insurtech",
+      "projects": [
+        {
+          "name": "Claim Management System",
+          "summary": "An internal system supporting the claim team to serve TPA service to insurance companies as well their insureds",
+          "teamSize": 8,
+          "startDate": "2021-12",
+          "endDate": "2022-06",
+          "keywords": []
+        },
+        {
+          "name": "STP (Straight Through Processing)",
+          "summary": "An automation system for processing insurance claims. This system automates the process of receiving, processing, and instant payment of claims for insurance companies",
+          "teamSize": 3,
+          "startDate": "2022-07",
+          "endDate": "2023-08",
+          "keywords": []
+        }
+      ],
+      "position": "Full Stack Developer",
+      "startDate": "2021-12",
+      "endDate": "2023-08",
+      "teamSize": 5,
+      "keywords": [
+        "NodeJS",
+        "GraphQL",
+        "Postgres",
+        "Javascript/Typescript",
+        "React",
+        "Git",
+        "AWS",
+        "Serverless"
+      ]
+    },
     {
       "highlights": [
         {
@@ -139,12 +229,38 @@
       ],
       "summary": "A legal case management system built exclusively with Microsoft 365 to provide all the intelligence and methods for managing the life cycle of a Case / Matter for lawyer",
       "name": "iDealogic",
-      "projectName": "Thread Legal",
+      "projects": [
+        {
+          "name": "Thread Legal",
+          "summary": "A legal case management system built exclusively with Microsoft 365 to provide all the intelligence and methods for managing the life cycle of a Case / Matter for lawyer",
+          "teamSize": 5,
+          "startDate": "2018-09",
+          "endDate": "2021-10",
+          "keywords": [
+            "C#.NET",
+            "HTML",
+            "SCSS/CSS",
+            "Javascript/Typescript",
+            "React",
+            "Redux",
+            "ASP.Net Core",
+            "WPF",
+            "Entity Framework Core",
+            "Microsoft SQL",
+            "Redis",
+            "Sharepoint Online",
+            "Microsoft Graph",
+            "SignalR",
+            "Azure",
+            "Git"
+          ]
+        }
+      ],
       "position": "Full Stack Developer",
       "startDate": "2018-09",
       "endDate": "2021-10",
       "teamSize": 5,
-      "keywords" : [
+      "keywords": [
         "C#.NET",
         "HTML",
         "SCSS/CSS",
@@ -170,7 +286,9 @@
       "endDate": "2019-02",
       "name": "Automation lock through face recognition",
       "description": "An IoT system uses face recognition to automatically unlock a door when an authorized person is in front of it",
-      "roles": [ "Full Stack Developer" ],
+      "roles": [
+        "Full Stack Developer"
+      ],
       "url": "https://github.com/Rokamaku/LockAutomationThroughFaceRecognition",
       "keywords": [
         "C#.NET",
@@ -205,7 +323,9 @@
     {
       "keywords": [
         "Tennis",
-        "Bicycle"
+        "Bicycle",
+        "Hiking",
+        "Running"
       ],
       "name": "Sports"
     }
