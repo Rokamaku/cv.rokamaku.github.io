@@ -8,6 +8,12 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ['master']
+    paths:
+      - 'public/resume.json'
+      - 'src/**'
+      - 'scripts/**'
+      - 'public/**'
+      - '.github/workflows/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -73,6 +79,8 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Generate CV from resume.json
+        run: ${{ steps.detect-package-manager.outputs.runner }} generate-cv
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} build
       - name: Upload artifact

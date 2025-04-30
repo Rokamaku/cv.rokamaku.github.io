@@ -11,7 +11,8 @@
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -25,6 +26,7 @@
       {
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "import/no-commonjs": "off"
   }
 }

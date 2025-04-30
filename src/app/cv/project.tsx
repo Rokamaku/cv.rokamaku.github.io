@@ -44,11 +44,6 @@ export const Project: React.FunctionComponent<ProjectProps> = (props) => {
         <div key={it.name} className={styles.experienceContainer}>
           <div className={styles.experienceTitleContainer}>
             <span className={styles.experienceTitle}>{it.name}</span>
-            <span
-              className={styles.experienceDuration}
-            >{`${toFormatDateWithMonth(it.startDate)} - ${toFormatDateWithMonth(
-              it.endDate,
-            )}`}</span>
           </div>
           <div className={styles.experienceSubtitleContainer}>
             <span className={styles.customExperienceDescription}>

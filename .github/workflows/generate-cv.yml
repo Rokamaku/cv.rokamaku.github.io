@@ -1,0 +1,58 @@
+name: Generate CV and Upload to Cloudflare R2
+
+on:
+  push:
+    branches: ['master']
+    paths:
+      - 'public/resume.json'
+      - 'scripts/generate-cv.js'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  generate-and-upload:
+    environment: 'github-pages'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Generate CV PDF
+        run: node scripts/generate-cv.js
+
+      - name: Get PDF filename
+        id: get-pdf-filename
+        run: |
+          PDF_FILENAME=$(node -e "const fs=require('fs'); const path=require('path'); const data=JSON.parse(fs.readFileSync('public/resume.json')); const url=data.basics.cvPdf; const parts=url.split('/'); console.log(parts[parts.length-1]);")
+          echo "Using PDF filename: $PDF_FILENAME"
+          echo "pdf_filename=$PDF_FILENAME" >> $GITHUB_OUTPUT
+
+      - name: Configure Cloudflare credentials
+        run: |
+          mkdir -p ~/.wrangler
+          echo "CLOUDFLARE_ACCOUNT_ID = \"$CLOUDFLARE_ACCOUNT_ID\"" > ~/.wrangler/config.toml
+          echo "CLOUDFLARE_API_TOKEN = \"${{ secrets.CLOUDFLARE_API_TOKEN }}\"" >> ~/.wrangler/config.toml
+
+      - name: Upload to Cloudflare R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+        run: |
+          # Use wrangler to upload the PDF to R2
+          PDF_FILENAME="${{ steps.get-pdf-filename.outputs.pdf_filename }}"
+          if [ -z "$PDF_FILENAME" ]; then
+            PDF_FILENAME="CV_AnhBui_FullStackDev.pdf"
+          fi
+          # Use the locally installed wrangler
+          ./node_modules/.bin/wrangler r2 object put "$R2_BUCKET_NAME/$PDF_FILENAME" --file "$PDF_FILENAME"

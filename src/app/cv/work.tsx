@@ -81,10 +81,6 @@ export const Work: React.FunctionComponent<WorkProps> = (props) => {
                 <div key={index} className={styles.projectItem}>
                   <div className={styles.projectHeader}>
                     <div className={styles.projectName}>{project.name}</div>
-                    <div className={styles.projectDuration}>
-                      {toFormatDateWithMonth(project.startDate)} -{' '}
-                      {toFormatDateWithMonth(project.endDate)}
-                    </div>
                   </div>
                   <div className={styles.projectSummary}>{project.summary}</div>
                   <div className={styles.projectTeamSize}>
