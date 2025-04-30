@@ -71,7 +71,7 @@ jobs:
           echo '{"files":["'$FULL_URL'"]}' > purge-cache.json
 
           # Make the API call to purge the cache using Global API Key
-          curl -v -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
             -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
             -H "Content-Type: application/json" \
             --data @purge-cache.json
