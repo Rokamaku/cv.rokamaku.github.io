@@ -49,12 +49,13 @@ async function uploadToCloudflare() {
 
     const bucketName = process.env.R2_BUCKET_NAME;
     // Format the object path correctly as {bucket}/{key} and use local wrangler
-    const command = `"${wranglerPath}" r2 object put "${bucketName}/${pdfFilename}" --file "${pdfPath}"`;
+    // Add --remote flag to ensure connection to actual Cloudflare account
+    const command = `"${wranglerPath}" r2 object put "${bucketName}/${pdfFilename}" --file "${pdfPath}" --remote`;
 
     console.log(`Executing command: ${command}`);
     const { stdout, stderr } = await execPromise(command);
 
-    if (stderr) {
+    if (stderr && !stderr.includes('Upload complete')) {
       console.error('Error during upload:', stderr);
       process.exit(1);
     }
