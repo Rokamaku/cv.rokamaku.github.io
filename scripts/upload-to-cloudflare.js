@@ -17,7 +17,7 @@ async function uploadToCloudflare() {
     const resumeData = JSON.parse(fs.readFileSync(resumeJsonPath, 'utf8'));
 
     // Get the PDF filename from the cvPdf URL or use default
-    let pdfFilename = 'CV_AnhBui_FullStackDev.pdf';
+    let pdfFilename = 'CV_AnhBui.pdf';
 
     if (resumeData.basics.cvPdf) {
       // Extract just the filename from the URL or path
@@ -30,7 +30,9 @@ async function uploadToCloudflare() {
 
     // Check if PDF exists
     if (!fs.existsSync(pdfPath)) {
-      console.error(`Error: PDF file not found at ${pdfPath}. Generate it first using 'yarn generate-cv'`);
+      console.error(
+        `Error: PDF file not found at ${pdfPath}. Generate it first using 'yarn generate-cv'`
+      );
       process.exit(1);
     }
 
@@ -62,7 +64,6 @@ async function uploadToCloudflare() {
 
     console.log('Upload successful!');
     console.log(stdout);
-
   } catch (error) {
     console.error('Error uploading to Cloudflare R2:', error);
     process.exit(1);
