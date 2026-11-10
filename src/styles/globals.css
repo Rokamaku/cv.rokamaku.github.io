@@ -9,6 +9,9 @@
   --color-text-secondary: #666666;
   --color-primary: #0070f3;
   --color-primary-rgb: 0, 112, 243;
+  /* text-safe primary: >= 4.5:1 on capsule/card backgrounds */
+  --color-link: #005bc4;
+  --color-on-primary: #ffffff;
   --color-accent: #d65226;
   --border-primary: rgba(0, 112, 243, 0.3);
   --highlight-bg: rgba(0, 112, 243, 0.1);
@@ -22,9 +25,11 @@
   --bg-capsule: rgba(57, 66, 67, 0.8);
   --bg-experience: rgba(47, 54, 55, 0.5);
   --color-text: #dddddd;
-  --color-text-secondary: #999999;
+  --color-text-secondary: #aaaaaa;
   --color-primary: #3092ec;
   --color-primary-rgb: 48, 146, 236;
+  --color-link: #5aa9f0;
+  --color-on-primary: #0b1a2a;
   --color-accent: #d65226;
   --border-primary: rgba(48, 146, 236, 0.3);
   --highlight-bg: rgba(48, 146, 236, 0.1);
@@ -62,7 +67,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  color: var(--color-link);
   background-color: var(--highlight-bg);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
@@ -75,4 +80,14 @@ a {
 .theme-toggle:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

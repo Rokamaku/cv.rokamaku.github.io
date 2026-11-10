@@ -1,8 +1,10 @@
 import React from 'react';
 import { BsFileCodeFill } from 'react-icons/bs';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 import styles from '../../styles/Cv.module.scss';
 import { toFormatDateWithMonth } from '../helper/time';
 import { useFilteredSkills } from '../hooks/useFilteredSkills';
+import { SkillChip } from '../components/SkillChip';
 
 export interface ProjectData {
   name?: string;
@@ -23,53 +25,64 @@ export interface ProjectProps {
   onKeywordSelect: (keyword: string, isSelected?: boolean) => void;
 }
 
-interface ProjectLocal extends Omit<ProjectData, 'keywords'> {
-  keywords?: {
-    name: string;
-    isSelected?: boolean;
-  }[];
-}
-
 export const Project: React.FunctionComponent<ProjectProps> = (props) => {
   const projectData = useFilteredSkills(props.data, props.keywords || []);
+  if (!projectData.length) return null;
 
   return (
-    <>
-      <div className={`${styles.capsuleDivider} ${styles.capsuleSpacer}`}></div>
-      <div className={styles.sectionHeading}>
-        <BsFileCodeFill className={styles.icon} />
+    <section className={styles.section}>
+      <h2 className={styles.sectionHeading}>
+        <BsFileCodeFill className={styles.icon} aria-hidden />
         <span className={styles.title}>Projects</span>
-      </div>
-      {(projectData as ProjectLocal[]).map((it) => (
-        <div key={it.name} className={styles.experienceContainer}>
+      </h2>
+      {projectData.map((it) => (
+        <article key={it.name} className={styles.experienceContainer}>
           <div className={styles.experienceTitleContainer}>
-            <span className={styles.experienceTitle}>{it.name}</span>
-          </div>
-          <div className={styles.experienceSubtitleContainer}>
-            <span className={styles.customExperienceDescription}>
-              {it.description}.
-            </span>
-            {it.url && (
-              <a target="_blank" rel="noreferrer" href={it.url}>
-                <span> Link</span>
-              </a>
+            <div>
+              <h3 className={styles.experienceTitle}>
+                {it.url ? (
+                  <a
+                    className={styles.inlineLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    href={it.url}
+                  >
+                    {it.name}
+                    <FaExternalLinkAlt
+                      className={styles.externalIcon}
+                      aria-label="(opens source)"
+                    />
+                  </a>
+                ) : (
+                  it.name
+                )}
+              </h3>
+              {!!it.roles?.length && (
+                <div className={styles.experienceCompany}>
+                  {it.roles.join(', ')}
+                </div>
+              )}
+            </div>
+            {it.startDate && (
+              <span className={styles.experienceDuration}>
+                {toFormatDateWithMonth(it.startDate)} –{' '}
+                {toFormatDateWithMonth(it.endDate)}
+              </span>
             )}
           </div>
-          <div className={styles.experienceSkillContainerIndent}>
+          <p className={styles.companySummary}>{it.description}</p>
+          <div className={styles.chipRow}>
             {it.keywords?.map((kw) => (
-              <span
+              <SkillChip
                 key={kw.name}
-                className={`${styles.experienceSkill} ${
-                  kw.isSelected ? styles.skillSelected : ''
-                }`}
-                onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}
-              >
-                {kw.name}
-              </span>
+                name={kw.name}
+                isSelected={kw.isSelected}
+                onToggle={props.onKeywordSelect}
+              />
             ))}
           </div>
-        </div>
+        </article>
       ))}
-    </>
+    </section>
   );
 };

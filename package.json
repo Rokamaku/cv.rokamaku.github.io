@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn generate-cv && next build",
     "start": "next start",
     "lint": "eslint .",
     "generate-cv": "node scripts/generate-cv.js",
     "watch-cv": "node scripts/generate-cv.js --watch",
-    "upload-cv": "node scripts/upload-to-cloudflare.js",
-    "build-and-upload": "yarn generate-cv && yarn upload-cv",
+    "deploy": "yarn build && wrangler deploy",
     "format": "prettier --write .",
     "format:scripts": "prettier --write 'scripts/**/*.js'"
   },

@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-// import Image from 'next/image'
 import styles from '../styles/Home.module.css';
 import { Cv, CvData } from '../app/cv';
 import MyCvData from '../../public/resume.json';
@@ -10,16 +9,24 @@ import ThemeToggle from '../app/components/ThemeToggle';
 
 const Home: NextPage = () => {
   const { basics }: CvData = MyCvData;
+  const title = `${basics.name} – ${basics.label} | Resume`;
+  const description = `${basics.name}, ${basics.label}. ${
+    basics.summary?.split('. ')[0] ?? ''
+  }`.trim();
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>{`${basics.name} - ${basics.label} Resume`} </title>
-        <meta name="description" content="Anh Bui CV" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="profile" />
+        {basics.url && <meta property="og:url" content={basics.url} />}
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <div className={styles.main}>
         <div className={styles.headerActions}>
           <ThemeToggle />
           <a
@@ -28,12 +35,12 @@ const Home: NextPage = () => {
             href={basics.cvPdf}
             className={styles.pdfLink}
           >
-            {/* <img width="36px" style={{ float: 'right' }} src="icons8-export-pdf-48.png" alt="Export to Pdf" /> */}
-            <FaFilePdf size={30} />
+            <FaFilePdf size={18} aria-hidden />
+            <span>Download PDF</span>
           </a>
         </div>
         <Cv data={MyCvData} />
-      </main>
+      </div>
     </div>
   );
 };

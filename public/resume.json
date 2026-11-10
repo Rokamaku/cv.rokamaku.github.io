@@ -1,16 +1,16 @@
 {
   "basics": {
     "name": "Bui Hoang Anh",
-    "label": "Software Engineer",
+    "label": "Senior Software Engineer",
     "email": "anhbh.work@gmail.com",
     "phone": "(+84) 379 585 666",
     "url": "https://rokamaku.dev",
-    "yoe": 6,
-    "cvPdf": "https://storage.rokamaku.dev/CV_AnhBui.pdf",
-    "summary": "Software Engineer with 6+ years of experience across diverse technologies and languages. Proficient in Object-Oriented Analysis and Design, System Design, Database Architecture, with strong infrastructure knowledge. Passionate about continuous learning and innovation, I thrive on implementing new solutions to enhance product quality and user experience. A collaborative problem-solver who balances technical excellence with business objectives.",
+    "yoe": 8,
+    "cvPdf": "/CV_AnhBui.pdf",
+    "summary": "Senior Software Engineer with 8+ years of experience building fintech and insurtech platforms end to end, from TypeScript/Node.js and React applications to the cloud infrastructure they run on. Strong in system design, database architecture and infrastructure as code. Works closely with product, operations and external partners to turn business requirements into stable, scalable systems.",
     "location": {
       "address": "Binh Thanh",
-      "city": "HCM",
+      "city": "Ho Chi Minh City",
       "countryCode": "VN"
     },
     "profiles": [
@@ -27,11 +27,12 @@
     ],
     "image": "/avatar.png",
     "topSkills": [
-      "C#.NET",
-      "NodeJS",
-      "HTML",
-      "Javascript/Typescript",
-      "React"
+      "TypeScript/JavaScript",
+      "Node.js",
+      "React",
+      "PostgreSQL",
+      "Terraform",
+      "C#.NET"
     ]
   },
   "education": [
@@ -44,7 +45,7 @@
       "score": "7.69/10",
       "keywords": [
         "C#.NET",
-        "Microsoft SQL",
+        "SQL Server",
         "Git"
       ]
     }
@@ -70,76 +71,93 @@
   ],
   "skills": [
     {
+      "name": "Languages",
       "keywords": [
+        "TypeScript/JavaScript",
         "C#.NET",
-        "Javascript/Typescript",
         "HTML",
         "SCSS/CSS"
-      ],
-      "name": "Programming Languages"
+      ]
     },
     {
+      "name": "Frameworks & Libraries",
       "keywords": [
-        "React",
-        "NodeJS",
+        "Node.js",
         "NestJS",
-        "Webpack, ES6",
+        "GraphQL",
+        "React",
+        "Redux",
         "ASP.NET Core",
         "Entity Framework Core",
         "SignalR",
-        "Docker",
-        "Terraform",
-        "Serverless"
-      ],
-      "name": "Frameworks/ Platforms"
+        "WPF"
+      ]
     },
     {
+      "name": "Databases",
       "keywords": [
-        "Microsoft SQL",
-        "Postgres SQL",
+        "PostgreSQL",
+        "SQL Server",
         "Redis"
-      ],
-      "name": "Database Management System"
+      ]
     },
     {
+      "name": "Cloud & DevOps",
       "keywords": [
+        "AWS",
+        "GCP",
         "Azure",
-        "AWS"
-      ],
-      "name": "Cloud"
-    },
-    {
-      "keywords": [
+        "Serverless",
+        "Terraform",
+        "Docker",
+        "GitLab CI",
         "Git"
-      ],
-      "name": "Version Control"
+      ]
     },
     {
+      "name": "Spoken Languages",
       "keywords": [
         "English"
-      ],
-      "name": "Foreign Language"
+      ]
     }
   ],
   "work": [
     {
       "highlights": [
         {
-          "description": "Work as devops, build the infrastructure as code for the new version. Ensure the system is stable and scalable, able to handle the growth of the company",
+          "description": "Developed core backend features and third-party integrations for the loan origination platform.",
           "keywords": []
         },
         {
-          "description": "Work across engineering teams to resolve problems, consult solution for other team members to improve the product",
+          "description": "Owned DevOps for the new platform version: built its infrastructure as code with Terraform to keep the system stable and scalable as the company grew.",
+          "keywords": []
+        },
+        {
+          "description": "Drove the migration of the platform from AWS to Google Cloud and strengthened its cloud security.",
+          "keywords": []
+        },
+        {
+          "description": "Standardised CI/CD pipelines across services, reducing build time and cost.",
+          "keywords": []
+        },
+        {
+          "description": "Worked across engineering teams to resolve production problems and advised teammates on technical solutions that improved the product.",
           "keywords": []
         }
       ],
-      "summary": "Ringkas is a financial technology (fintech) company dedicated to simplifying and expanding access to home financing across Southeast Asia. By leveraging digital tools and data-driven solutions, Ringkas connects aspiring homeowners with financial institutions and streamlines the mortgage application process. The company's mission is to increase financial inclusion and make homeownership more accessible, transparent, and efficient.",
+      "summary": "Fintech company simplifying access to home financing across Southeast Asia by connecting home buyers with lenders and digitising the mortgage application process.",
       "name": "Ringkas",
       "projects": [
         {
-          "name": "CRM",
-          "summary": "A CRM system for managing customer data and interactions, support digitalize the process of applying for a home loan",
+          "name": "Loan Origination System (LOS)",
+          "summary": "Platform that digitises the home-loan application process, managing customer data, documents and interactions between home buyers, developers and lenders.",
           "teamSize": 15,
+          "keywords": []
+        },
+        {
+          "name": "Cloud Platform & DevOps",
+          "summary": "Infrastructure as code, CI/CD pipelines, monitoring and security for all Ringkas services on AWS and Google Cloud.",
+          "teamSize": 3,
           "keywords": []
         }
       ],
@@ -148,34 +166,37 @@
       "endDate": "Current",
       "teamSize": 15,
       "keywords": [
-        "NodeJS",
+        "Node.js",
         "GraphQL",
-        "Postgres",
-        "Javascript/Typescript",
+        "PostgreSQL",
+        "TypeScript/JavaScript",
         "React",
         "Git",
         "AWS",
         "Serverless",
         "Terraform",
-        "Docker"
+        "Docker",
+        "NestJS",
+        "GCP",
+        "GitLab CI"
       ]
     },
     {
       "highlights": [
         {
-          "description": "One of core member who build the whole system from scratch, from communication with other departments as well as external parties to architecture design and implementation",
+          "description": "Core member who built the platform from scratch, from gathering requirements with internal departments and external partners to architecture design and implementation.",
           "keywords": []
         },
         {
-          "description": "Ensure system is stable and scalable, able to handle the growth of the company, setup operation process for system on cloud",
+          "description": "Kept the system stable and scalable as the company grew, and set up the operational processes for running it in the cloud.",
           "keywords": []
         },
         {
-          "description": "Build the first version of STP (Straight Through Processing) system, helping claim team to decrease the number of claim that need to be processed manually",
+          "description": "Built the first version of the Straight Through Processing (STP) system, reducing the number of claims the claims team had to process manually.",
           "keywords": []
         }
       ],
-      "summary": "Papaya Insurtech is a Vietnam-based fintech company founded in 2018, specializing in digital solutions for life and health insurance. As the country's first lightweight, scalable digital third-party administrator (TPA), Papaya streamlines insurance processes through a digitized platform that connects directly with insurance companies and incorporates automatic fraud detection functionalities.",
+      "summary": "Vietnam's first digital third-party administrator (TPA) for life and health insurance, automating claims processing and fraud detection for insurers.",
       "name": "Papaya Insurtech",
       "projects": [
         {
@@ -200,10 +221,10 @@
       "endDate": "2023-08",
       "teamSize": 5,
       "keywords": [
-        "NodeJS",
+        "Node.js",
         "GraphQL",
-        "Postgres",
-        "Javascript/Typescript",
+        "PostgreSQL",
+        "TypeScript/JavaScript",
         "React",
         "Git",
         "AWS",
@@ -214,24 +235,24 @@
     {
       "highlights": [
         {
-          "description": "Communicate with customers and teammates to clarify the requirement",
+          "description": "Clarified requirements directly with customers and teammates.",
           "keywords": []
         },
         {
-          "description": "Maintain and develop new feature for main web application",
+          "description": "Maintained and developed new features for the main web application.",
           "keywords": []
         },
         {
-          "description": "Maintain and develop multiple Office add-ins for Microsoft Word and Microsoft Outlook",
+          "description": "Maintained and developed Office add-ins for Microsoft Word and Outlook.",
           "keywords": []
         },
         {
-          "description": "Build a VSTO extension for Outlook desktop using WPF and setup an installer for it",
+          "description": "Built a VSTO extension for Outlook desktop using WPF, including its installer.",
           "keywords": []
         }
       ],
-      "summary": "iDeaLogic Vietnam is an IT staffing and software development company founded in 2014, with offices in Ho Chi Minh City and Hanoi. Originally rooted in the Netherlands, the company provides full-cycle technology solutions including IT consulting, custom software engineering, and a Build-Operate-Transfer (BOT Light) model for offshore development teams.",
-      "name": "iDealogic",
+      "summary": "Dutch-rooted IT services company in Vietnam delivering custom software and offshore development teams.",
+      "name": "iDeaLogic",
       "projects": [
         {
           "name": "Thread Legal",
@@ -243,15 +264,15 @@
             "C#.NET",
             "HTML",
             "SCSS/CSS",
-            "Javascript/Typescript",
+            "TypeScript/JavaScript",
             "React",
             "Redux",
-            "ASP.Net Core",
+            "ASP.NET Core",
             "WPF",
             "Entity Framework Core",
-            "Microsoft SQL",
+            "SQL Server",
             "Redis",
-            "Sharepoint Online",
+            "SharePoint Online",
             "Microsoft Graph",
             "SignalR",
             "Azure",
@@ -267,15 +288,15 @@
         "C#.NET",
         "HTML",
         "SCSS/CSS",
-        "Javascript/Typescript",
+        "TypeScript/JavaScript",
         "React",
         "Redux",
-        "ASP.Net Core",
+        "ASP.NET Core",
         "WPF",
         "Entity Framework Core",
-        "Microsoft SQL",
+        "SQL Server",
         "Redis",
-        "Sharepoint Online",
+        "SharePoint Online",
         "Microsoft Graph",
         "SignalR",
         "Azure",
@@ -297,13 +318,13 @@
         "C#.NET",
         "HTML",
         "SCSS/CSS",
-        "Javascript/Typescript",
+        "TypeScript/JavaScript",
         "React",
         "Redux",
-        "ASP.Net Core",
+        "ASP.NET Core",
         "Entity Framework Core",
         "Python",
-        "Microsoft SQL",
+        "SQL Server",
         "Azure",
         "Azure Function",
         "Microsoft Recognition API",
@@ -313,23 +334,23 @@
   ],
   "interests": [
     {
+      "name": "Reading",
       "keywords": [
-        "IT",
-        "Novel"
-      ],
-      "name": "Reading book/blog"
+        "Tech blogs",
+        "Novels"
+      ]
     },
     {
       "name": "Music"
     },
     {
+      "name": "Sports",
       "keywords": [
         "Tennis",
-        "Bicycle",
+        "Cycling",
         "Hiking",
         "Running"
-      ],
-      "name": "Sports"
+      ]
     }
   ]
 }

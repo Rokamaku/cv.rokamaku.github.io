@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react"
+import { useMemo } from 'react';
+import type { SelectableKeyword } from './useFilteredSkills';
 
-
-export const useSelectedSkill = (data: string[], keywords: string[]) => {
-  const [ skills, setSkills ] = useState<{ name: string, isSelected?: boolean }[]>([]);
-
-  useEffect(() => {
-    setSkills(data?.map(sk => {
-      if (keywords?.includes(sk)) {
-        return {
-          name: sk,
-          isSelected: true
-        }
-      }
-      return {
-        name: sk
-      }
-    }))
-  }, [keywords, data]);
-
-  return skills;
-}
+/** Flags which of `data` are currently selected (case-insensitive). */
+export const useSelectedSkill = (
+  data: string[],
+  keywords: string[],
+): SelectableKeyword[] =>
+  useMemo(
+    () =>
+      data.map((sk) => ({
+        name: sk,
+        isSelected:
+          keywords.some((kw) => kw.toLowerCase() === sk.toLowerCase()) ||
+          undefined,
+      })),
+    [data, keywords],
+  );

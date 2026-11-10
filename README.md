@@ -1,41 +1,35 @@
-# rokamaku.github.io
+# cv.rokamaku.dev
 
-Personal portfolio and CV website.
+Personal CV website, built with Next.js (static export) and hosted on Cloudflare Workers.
 
-## Features
+## Editing the CV
 
-### Automatic CV Generation
+All content lives in `public/resume.json`. Both the web page and the downloadable PDF are generated
+from it, so there is nothing else to update.
 
-The site includes functionality to automatically generate a PDF CV from the JSON resume data:
+## Commands
 
-- Edit the resume data in `public/resume.json`
-- The PDF CV is automatically generated at `public/CV_AnhBui_FullStackDev.pdf`
+- `yarn dev` - Run the site locally
+- `yarn build` - Generate the PDF into `public/`, then build the static site into `out/`
+- `yarn generate-cv` - Generate only the PDF
+- `yarn watch-cv` - Regenerate the PDF whenever `resume.json` changes
+- `yarn deploy` - Build and deploy to Cloudflare with Wrangler
 
-#### CV Generation Commands
+## How the PDF download works
 
-- `yarn generate-cv` - Generate the CV once
-- `yarn watch-cv` - Watch for changes in resume.json and regenerate the CV automatically
+`scripts/generate-cv.js` draws the PDF from `resume.json` with PDFKit and writes it to
+`public/<name>.pdf`, where the name comes from `basics.cvPdf`. The file is git-ignored and
+rebuilt on every build, so it ships with the site as a static asset and the Download PDF button
+links to it on the same domain.
 
-The GitHub Actions workflow will automatically generate the CV on each push to the repository when the resume data changes.
+## Hosting
 
-### Cloudflare R2 Integration
+The site is a static-assets-only Cloudflare Worker, configured in `wrangler.jsonc`
+(assets directory `out/`, custom domain `cv.rokamaku.dev`).
 
-The CV can be automatically uploaded to Cloudflare R2 object storage:
+Deploys run on Cloudflare through Workers Builds, connected to this repository:
 
-#### Setup
+- Build command: `yarn build`
+- Deploy command: `npx wrangler deploy`
 
-1. Create a Cloudflare R2 bucket in your Cloudflare account
-2. Create an API token with R2 storage access
-3. Configure GitHub secrets in your repository:
-   - `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
-   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token
-   - `R2_BUCKET_NAME` - Your R2 bucket name
-
-#### Usage
-
-- `yarn upload-cv` - Upload the CV to Cloudflare R2
-- `yarn build-and-upload` - Generate the CV and then upload it to Cloudflare R2
-
-#### Automatic Uploads
-
-The GitHub workflow will automatically upload the CV to Cloudflare R2 whenever the resume data changes in the repository.
+Every push to `master` builds and deploys; no GitHub Actions or R2 bucket are involved.

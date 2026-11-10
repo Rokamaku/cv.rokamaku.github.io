@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FaUniversity } from 'react-icons/fa';
 import styles from '../../styles/Cv.module.scss';
 import { toFormatDateWithMonth } from '../helper/time';
 import { useFilteredSkills } from '../hooks/useFilteredSkills';
+import { SkillChip } from '../components/SkillChip';
 
 export interface EducationData {
   institution?: string;
@@ -22,59 +23,47 @@ export interface EducationProps {
   onKeywordSelect: (keyword: string, isSelected?: boolean) => void;
 }
 
-interface EducationLocal extends Omit<EducationData, 'keywords'> {
-  keywords?: {
-    name: string;
-    isSelected?: boolean;
-  }[];
-}
-
 export const Education: React.FunctionComponent<EducationProps> = (props) => {
   const educationData = useFilteredSkills(props.data, props.keywords || []);
+  if (!educationData.length) return null;
 
   return (
-    <>
-      <div className={`${styles.capsuleDivider} ${styles.capsuleSpacer}`}></div>
-      <div className={styles.sectionHeading}>
-        <FaUniversity className={styles.icon} />
+    <section className={styles.section}>
+      <h2 className={styles.sectionHeading}>
+        <FaUniversity className={styles.icon} aria-hidden />
         <span className={styles.title}>Education</span>
-      </div>
-      {(educationData as EducationLocal[]).map((it) => (
-        <div
-          key={`${it.area}${it.studyType}`}
+      </h2>
+      {educationData.map((it) => (
+        <article
+          key={`${it.institution}${it.area}${it.studyType}`}
           className={styles.experienceContainer}
         >
           <div className={styles.experienceTitleContainer}>
-            <span
-              className={styles.experienceTitle}
-            >{`${it.studyType} in ${it.area}`}</span>
-            <span
-              className={styles.experienceDuration}
-            >{`${toFormatDateWithMonth(it.startDate)} - ${toFormatDateWithMonth(
-              it.endDate,
-            )}`}</span>
-          </div>
-          <div className={styles.experienceSubtitleContainer}>
-            <span className={styles.experienceSubtitle}>{it.institution}</span>
-          </div>
-          {it.score && (
-            <div className={styles.experienceSubtitleContainer}>
-              <span className={styles.experienceSubtitle}>GPA: {it.score}</span>
+            <div>
+              <h3 className={styles.experienceTitle}>
+                {`${it.studyType} in ${it.area}`}
+              </h3>
+              <div className={styles.experienceCompany}>{it.institution}</div>
             </div>
-          )}
-          {it.keywords?.map((kw) => (
-            <span
-              key={kw.name}
-              className={`${styles.experienceSkill} ${
-                kw.isSelected ? styles.skillSelected : ''
-              }`}
-              onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}
-            >
-              {kw.name}
+            <span className={styles.experienceDuration}>
+              {`${toFormatDateWithMonth(it.startDate)} – ${toFormatDateWithMonth(
+                it.endDate,
+              )}`}
             </span>
-          ))}
-        </div>
+          </div>
+          {it.score && <p className={styles.companySummary}>GPA: {it.score}</p>}
+          <div className={styles.chipRow}>
+            {it.keywords?.map((kw) => (
+              <SkillChip
+                key={kw.name}
+                name={kw.name}
+                isSelected={kw.isSelected}
+                onToggle={props.onKeywordSelect}
+              />
+            ))}
+          </div>
+        </article>
       ))}
-    </>
+    </section>
   );
 };

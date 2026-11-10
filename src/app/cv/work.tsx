@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FaBriefcase } from 'react-icons/fa';
+import React from 'react';
 import styles from '../../styles/Cv.module.scss';
 import { toFormatDateWithMonth } from '../helper/time';
 import { useFilteredSkills } from '../hooks/useFilteredSkills';
+import { SkillChip } from '../components/SkillChip';
 
 export interface Project {
   name: string;
@@ -36,102 +36,96 @@ export interface WorkProps {
   highlightedIndex?: number;
 }
 
-interface ProjectLocal extends Omit<Project, 'keywords'> {
-  keywords?: {
-    name: string;
-    isSelected?: boolean;
-  }[];
-}
-
-interface WorkLocal extends Omit<WorkData, 'keywords'> {
-  keywords?: {
-    name: string;
-    isSelected?: boolean;
-  }[];
-}
+const workId = (work: Pick<WorkData, 'name' | 'startDate'>) =>
+  `${work.name ?? ''}-${work.startDate ?? ''}`;
 
 export const Work: React.FunctionComponent<WorkProps> = (props) => {
   const workData = useFilteredSkills(props.data, props.keywords || []);
+  const highlightedId =
+    props.highlightedIndex !== undefined
+      ? workId(props.data[props.highlightedIndex] ?? {})
+      : undefined;
+
+  if (!workData.length) {
+    return (
+      <p className={styles.emptyState}>No roles match the selected skills.</p>
+    );
+  }
 
   return (
     <>
-      {(workData as WorkLocal[]).map((it, index) => (
-        <div
-          key={it.name}
-          className={`${
-            styles.experienceContainer
-          } ${it.keywords?.toString()} ${
-            props.highlightedIndex === index ? styles.highlighted : ''
+      {workData.map((it) => (
+        <article
+          key={workId(it)}
+          id={`work-${props.data.findIndex((w) => workId(w) === workId(it))}`}
+          className={`${styles.experienceContainer} ${
+            highlightedId === workId(it) ? styles.highlighted : ''
           }`}
         >
           <div className={styles.experienceTitleContainer}>
-            <span className={styles.experienceTitle}>{it.position}</span>
+            <div>
+              <h3 className={styles.experienceTitle}>{it.position}</h3>
+              <div className={styles.experienceCompany}>{it.name}</div>
+            </div>
             <span className={styles.experienceDuration}>
-              {toFormatDateWithMonth(it.startDate)} -{' '}
+              {toFormatDateWithMonth(it.startDate)} –{' '}
               {toFormatDateWithMonth(it.endDate)}
             </span>
           </div>
-          <div className={styles.experienceSubtitleContainer}>
-            <span className={styles.experienceSubtitle}>{it.name}</span>
-          </div>
-          <div className={styles.workSummaryStatement}>
-            Projects:
-            <div className={styles.projectList}>
-              {it.projects?.map((project, index) => (
-                <div key={index} className={styles.projectItem}>
-                  <div className={styles.projectHeader}>
-                    <div className={styles.projectName}>{project.name}</div>
-                  </div>
-                  <div className={styles.projectSummary}>{project.summary}</div>
-                  <div className={styles.projectTeamSize}>
-                    Team size: {project.teamSize}
-                  </div>
-                  <div className={styles.experienceSkillContainerIndent}>
-                    {/* {(project as ProjectLocal).keywords?.map((kw) => (
-                      <span
-                        key={kw.name}
-                        className={`${styles.experienceSkill} ${
-                          kw.isSelected ? styles.skillSelected : ''
-                        }`}
-                        onClick={() =>
-                          props.onKeywordSelect(kw.name, !kw.isSelected)
-                        }
-                      >
-                        {kw.name}
+          {it.summary && (
+            <p className={styles.companySummary}>{it.summary}</p>
+          )}
+
+          {!!it.highlights?.length && (
+            <div className={styles.workSection}>
+              <h4 className={styles.workSectionLabel}>Key achievements</h4>
+              <ul className={styles.experienceAccomplishmentList}>
+                {it.highlights.map((hl) => (
+                  <li key={hl.description}>{hl.description}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {!!it.projects?.length && (
+            <div className={styles.workSection}>
+              <h4 className={styles.workSectionLabel}>Projects</h4>
+              <div className={styles.projectList}>
+                {it.projects.map((project) => (
+                  <div key={project.name} className={styles.projectItem}>
+                    <div className={styles.projectHeader}>
+                      <span className={styles.projectName}>
+                        {project.name}
                       </span>
-                    ))} */}
+                      <span className={styles.projectMeta}>
+                        {project.startDate &&
+                          `${toFormatDateWithMonth(
+                            project.startDate,
+                          )} – ${toFormatDateWithMonth(project.endDate)}`}
+                        {project.startDate && project.teamSize && ' · '}
+                        {project.teamSize && `Team of ${project.teamSize}`}
+                      </span>
+                    </div>
+                    <div className={styles.projectSummary}>
+                      {project.summary}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+          )}
+
+          <div className={styles.chipRow}>
+            {it.keywords?.map((kw) => (
+              <SkillChip
+                key={kw.name}
+                name={kw.name}
+                isSelected={kw.isSelected}
+                onToggle={props.onKeywordSelect}
+              />
+            ))}
           </div>
-          <div className={styles.workSummaryStatement}>
-            Responsibilities:
-            <ul className={styles.experienceAccomplishmentList}>
-              {it.highlights?.map((hl) => (
-                <li
-                  key={hl.description}
-                  className={`${styles.experienceAccomplishment}`}
-                >
-                  {hl.description}
-                </li>
-              ))}
-            </ul>
-            <div className={styles.experienceSkillContainerIndent}>
-              {it.keywords?.map((kw) => (
-                <span
-                  key={kw.name}
-                  className={`${styles.experienceSkill} ${
-                    kw.isSelected ? styles.skillSelected : ''
-                  }`}
-                  onClick={() => props.onKeywordSelect(kw.name, !kw.isSelected)}
-                >
-                  {kw.name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        </article>
       ))}
     </>
   );

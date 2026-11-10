@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { FaTools } from 'react-icons/fa';
 import styles from '../../styles/Cv.module.scss';
 import { useSelectedSkill } from '../hooks/useSelectedSkills';
+import { SkillChip } from '../components/SkillChip';
 
 export interface SkillData {
   name: string;
@@ -16,51 +17,39 @@ export interface SkillProps {
 }
 
 export const Skill: React.FunctionComponent<SkillProps> = (props) => {
-  const flattenSkills = useMemo(() => {
-    const flattenSkills: string[] = [];
-    props.data.forEach((value) => {
-      value.keywords?.forEach((kw) => {
-        flattenSkills.push(kw);
-      });
-    });
-    return flattenSkills;
-  }, [props.data]);
+  const flattenSkills = useMemo(
+    () => props.data.flatMap((group) => group.keywords ?? []),
+    [props.data],
+  );
   const skills = useSelectedSkill(flattenSkills, props.keywords || []);
+  const isSelected = (name: string) =>
+    skills.find((sk) => sk.name.toLowerCase() === name.toLowerCase())
+      ?.isSelected;
 
   return (
-    <>
-      <div className={styles.sectionHeading}>
-        <FaTools className={styles.icon} />
+    <section>
+      <h2 className={styles.sectionHeading}>
+        <FaTools className={styles.icon} aria-hidden />
         <span className={styles.title}>Skills</span>
-      </div>
+      </h2>
+      <p className={styles.filterHint}>
+        Click a skill to filter my experience.
+      </p>
       {props.data.map((it) => (
         <div key={it.name}>
-          <div className={styles.skillType}>{it.name}</div>
+          <h3 className={styles.skillType}>{it.name}</h3>
           <div className={styles.skillContainer}>
-            {it.keywords?.map((skillName) => {
-              let currentSkill = skills.filter(
-                (sk) => sk.name.toLowerCase() === skillName.toLowerCase(),
-              )[0];
-              return (
-                <span
-                  key={skillName}
-                  className={`${styles.skill} ${
-                    currentSkill?.isSelected ? styles.skillSelected : ''
-                  }`}
-                  onClick={() =>
-                    props.onKeywordSelect(
-                      currentSkill.name,
-                      !currentSkill.isSelected,
-                    )
-                  }
-                >
-                  {skillName}
-                </span>
-              );
-            })}
+            {it.keywords?.map((skillName) => (
+              <SkillChip
+                key={skillName}
+                name={skillName}
+                isSelected={isSelected(skillName)}
+                onToggle={props.onKeywordSelect}
+              />
+            ))}
           </div>
         </div>
       ))}
-    </>
+    </section>
   );
 };

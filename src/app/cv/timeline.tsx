@@ -7,53 +7,44 @@ export interface TimelineData {
   position: string;
   startDate: string;
   endDate: string;
-  summary?: string;
 }
 
 export interface TimelineProps {
+  /** Newest first, as in resume.json; rendered oldest → newest. */
   data: TimelineData[];
   onHover: (index: number) => void;
   onLeave: () => void;
 }
 
 export const Timeline: React.FunctionComponent<TimelineProps> = (props) => {
-  const getTimelineYear = (date: string) => {
-    if (!date || date.toLowerCase() === 'current') {
-      return new Date().getFullYear();
-    }
-    return new Date(date).getFullYear();
-  };
+  const items = props.data
+    .map((item, index) => ({ item, index }))
+    .reverse();
 
   return (
-    <div className={styles.timelineContainer}>
-      <div className={styles.timelineLine} />
-      {props.data.map((item, index) => (
-        <div
-          key={index}
-          className={styles.timelineSection}
-          onMouseEnter={() => props.onHover(index)}
-          onMouseLeave={props.onLeave}
-        >
-          <div className={styles.timelineCompanyInfo}>
-            <div className={styles.timelineCompany}>{item.name}</div>
-            <div className={styles.timelinePosition}>{item.position}</div>
-            <div className={styles.timelineDuration}>
-              {toFormatDateWithMonth(item.startDate)} -{' '}
-              {toFormatDateWithMonth(item.endDate)}
-            </div>
-            {item.summary && (
-              <div
-                className={styles.timelineSummary}
-                dangerouslySetInnerHTML={{ __html: item.summary }}
-              />
-            )}
-          </div>
-          <div className={styles.timelineDot} />
-          <div className={styles.timelineYear}>
-            {getTimelineYear(item.startDate)}
-          </div>
-        </div>
-      ))}
-    </div>
+    <nav className={styles.timelineContainer} aria-label="Career timeline">
+      <ol className={styles.timelineList}>
+        {items.map(({ item, index }) => (
+          <li key={`${item.name}-${item.startDate}`}>
+            <a
+              href={`#work-${index}`}
+              className={styles.timelineSection}
+              onMouseEnter={() => props.onHover(index)}
+              onMouseLeave={props.onLeave}
+              onFocus={() => props.onHover(index)}
+              onBlur={props.onLeave}
+            >
+              <span className={styles.timelineDot} aria-hidden />
+              <span className={styles.timelineDuration}>
+                {toFormatDateWithMonth(item.startDate)} –{' '}
+                {toFormatDateWithMonth(item.endDate)}
+              </span>
+              <span className={styles.timelineCompany}>{item.name}</span>
+              <span className={styles.timelinePosition}>{item.position}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
   );
 };
