@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "cv-rokamaku",
+  "name": "cv-rokamaku-github-io",
   "compatibility_date": "2026-11-10",
   // Static-assets-only Worker: serves the Next.js static export, including
   // the PDF that `yarn build` generates into public/.
